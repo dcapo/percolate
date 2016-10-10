@@ -17,17 +17,17 @@ class CreateTastingsTable extends Migration
             $table->increments('id');
             $table->timestamp('tasted_at');
             $table->integer('user_id')->unsigned()->index();
-            $table->float('overall_score');
-            $table->float('dry_fragrance');
-            $table->float('wet_aroma');
-            $table->float('brightness');
-            $table->float('flavor');
-            $table->float('body');
-            $table->float('finish');
-            $table->float('sweetness');
-            $table->float('clean_cup');
-            $table->float('complexity');
-            $table->float('uniformity');
+            $table->integer('overall_score');
+            $table->integer('dry_fragrance');
+            $table->integer('wet_aroma');
+            $table->integer('brightness');
+            $table->integer('flavor');
+            $table->integer('body');
+            $table->integer('finish');
+            $table->integer('sweetness');
+            $table->integer('clean_cup');
+            $table->integer('complexity');
+            $table->integer('uniformity');
             $table->timestamps();
 
             $table->foreign('user_id')

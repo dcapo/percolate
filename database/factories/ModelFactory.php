@@ -40,3 +40,51 @@ $factory->define(App\Roast::class, function (Faker\Generator $faker) {
         'drop_temperature' => $faker->randomFloat(1, 200, 500)
     ];
 });
+
+$factory->define(App\BrewStyle::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->text(30)
+    ];
+});
+
+$factory->define(App\Brew::class, function (Faker\Generator $faker) {
+    return [
+        'brewed_at' => $faker->dateTimeThisMonth(),
+        'roast_id' => 1,
+        'brew_style_id'=> 1
+    ];
+});
+
+$factory->define(App\BrewReading::class, function (Faker\Generator $faker) {
+    return [
+        'brew_id' => 1,
+        'temperature' => $faker->randomFloat(1, 200, 500),
+        'time' => $faker->numberBetween(1000, 100000)
+    ];
+});
+
+$factory->define(App\Tasting::class, function (Faker\Generator $faker) {
+    return [
+        'tasted_at' => $faker->dateTimeThisMonth(),
+        'user_id' => 1,
+        'overall_score' => $faker->numberBetween(1, 10),
+        'dry_fragrance' => $faker->numberBetween(1, 10),
+        'wet_aroma' => $faker->numberBetween(1, 10),
+        'brightness' => $faker->numberBetween(1, 10),
+        'flavor' => $faker->numberBetween(1, 10),
+        'body' => $faker->numberBetween(1, 10),
+        'finish' => $faker->numberBetween(1, 10),
+        'sweetness' => $faker->numberBetween(1, 10),
+        'clean_cup' => $faker->numberBetween(1, 10),
+        'complexity' => $faker->numberBetween(1, 10),
+        'uniformity' => $faker->numberBetween(1, 10)
+    ];
+});
+
+$factory->define(App\TastingNote::class, function (Faker\Generator $faker) {
+    return [
+        'tasting_id' => 1,
+        'name' => $faker->word
+    ];
+});
+
