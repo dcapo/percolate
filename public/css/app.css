@@ -812,7 +812,7 @@ a.box:active {
   .content a:not(.button) {
     border-bottom: 1px solid #dbdbdb; }
     .content a:not(.button):visited {
-      color: #b86bff; }
+      color: #6F5B72; }
     .content a:not(.button):hover {
       border-bottom-color: #00d1b2; }
   .content li + li {
@@ -4384,5 +4384,18 @@ body {
 
 .add-new {
   margin-bottom: 20px; }
+
+.delete-button {
+  border: none;
+  background-color: transparent;
+  color: #00d1b2;
+  cursor: pointer;
+  outline: 0;
+  padding: 0; }
+  .delete-button:hover {
+    color: black; }
+
+.notification.is-info {
+  background-color: #6F5B72; }
 
 /*# sourceMappingURL=app.css.map */

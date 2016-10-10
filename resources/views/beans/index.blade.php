@@ -8,10 +8,11 @@
     @include('partials.title', ['title' => 'Beans'])
 
     <div class="container">
-    @include('partials.add_new', [
-        'buttonText' => 'Add Bean',
-        'route' => route('beans.create')
-    ])
+        @include('flash::message')
+        @include('partials.add_new', [
+            'buttonText' => 'Add Bean',
+            'route' => route('beans.create')
+        ])
         <table class="table">
             <thead>
                 <tr>
@@ -27,14 +28,23 @@
                         <td>{{ $bean->name }}</td>
                         <td>{{ $bean->origin }}</td>
                         <td class="is-icon">
-                            <a href="{{ route('beans.edit', $bean->id) }}">
+                            <a class="icon" href="{{ route('beans.edit', $bean->id) }}">
                                 <i class="fa fa-edit"></i>
                             </a>
                         </td>
                         <td class="is-icon">
-                        <a href="{{ route('beans.destroy', $bean->id) }}">
-                                <i class="fa fa-trash"></i>
-                            </a>
+                            {!! Form::open([
+                                    'method' => 'DELETE',
+                                    'action' => [
+                                        'BeansController@destroy',
+                                        $bean->id
+                                    ]
+                                ])
+                            !!}
+                                <button type="submit" class="icon delete-button">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            {!! Form::close() !!}
                         </td>
                     </tr>
                 @empty

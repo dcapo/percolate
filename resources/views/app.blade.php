@@ -8,7 +8,7 @@
             rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
             rel="stylesheet">
-        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="/css/app.css">
 
         <title>Malo's Over-Engineered Coffee Thing</title>
 
@@ -22,6 +22,6 @@
             </div>
             @include('partials.footer')
         </div>
-        <script src="js/app.js"></script>
+        <script src="/js/app.js"></script>
     </body>
 </html>
