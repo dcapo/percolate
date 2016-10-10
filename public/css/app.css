@@ -4378,4 +4378,11 @@ body {
   -webkit-box-flex: 1;
   flex: 1; }
 
+.page-title {
+  background: transparent;
+  text-transform: uppercase; }
+
+.add-new {
+  margin-bottom: 20px; }
+
 /*# sourceMappingURL=app.css.map */
