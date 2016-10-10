@@ -12,7 +12,12 @@
 */
 
 Route::get('/', function () {
-    return 'poop';
-});
+    return view('home');
+})->name('home');
 
+Route::resource('beans', 'BeansController');
 Route::resource('roasts', 'RoastsController');
+Route::resource('brews', 'BrewsController');
+Route::resource('tastings', 'TastingsController');
+
+Route::get('reports', 'ReportsController@index')->name('reports.index');

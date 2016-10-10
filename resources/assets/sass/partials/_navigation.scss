@@ -1,0 +1,14 @@
+.nav-item img {
+    max-height: 35px;
+}
+
+.nav-item.is-brand {
+    img {
+        padding-right: 10px;
+        padding-left: 20px;
+    }
+
+    span {
+        font-weight: 700;
+    }
+}

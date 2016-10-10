@@ -4352,4 +4352,30 @@ a.panel-block:hover {
       .footer a:not(.icon):hover, .footer a:visited:not(.icon):hover {
         border-bottom-color: #00d1b2; }
 
+.nav-item img {
+  max-height: 35px; }
+
+.nav-item.is-brand img {
+  padding-right: 10px;
+  padding-left: 20px; }
+
+.nav-item.is-brand span {
+  font-weight: 700; }
+
+body {
+  background-color: #f5f8fa;
+  font-family: "Open Sans", sans-serif; }
+
+#app {
+  display: -webkit-box;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column; }
+
+.main-content {
+  -webkit-box-flex: 1;
+  flex: 1; }
+
 /*# sourceMappingURL=app.css.map */

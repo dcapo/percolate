@@ -1,7 +1,18 @@
-// Fonts
-
-// Variables
-@import "variables";
-
-// Dependencies
+@import "partials/variables";
 @import "../../../node_modules/bulma/bulma.sass";
+@import "partials/navigation";
+
+body {
+    background-color: $body-bg;
+    font-family: $font-family-sans-serif;
+}
+
+#app {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+}

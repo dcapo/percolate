@@ -1,9 +1,9 @@
 @extends('app')
 
-@section('navigation/roasts/is-active')
+@section('navigation/reports/is-active')
     is-active
 @stop
 
 @section('content')
-    roasts
+    reports
 @stop
