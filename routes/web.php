@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return 'poop';
 });
+
+Route::resource('roasts', 'RoastsController');
