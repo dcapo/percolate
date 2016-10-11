@@ -10,7 +10,7 @@ use App\Http\Requests\BeanRequest;
 class BeansController extends Controller
 {
     public function index() {
-        $beans = Bean::all();
+        $beans = Bean::orderBy('updated_at', 'desc')->get();
         return view('beans.index', compact('beans'));
     }
 
@@ -25,12 +25,15 @@ class BeansController extends Controller
         return redirect(route('beans.index'));
     }
 
-    public function edit() {
-
+    public function edit(Bean $bean) {
+        return view('beans.edit', compact('bean'));
     }
 
-    public function update() {
+    public function update(Bean $bean, BeanRequest $request) {
+        $bean->update($request->all());
 
+        flash("Bean '$bean->name' has been updated.");
+        return redirect(route('beans.index'));
     }
 
     public function destroy(Bean $bean) {
