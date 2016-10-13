@@ -7,6 +7,7 @@
 <script>
     import Chart from 'chart.js';
     import GraphMixin from './mixins/GraphMixin';
+    import util from '../util';
 
     export default {
         mixins: [GraphMixin],
@@ -16,7 +17,8 @@
                 config: {
                     type: 'radar',
                     data: {
-                        labels: Object.keys(this.dataset),
+                        labels: Object.keys(this.dataset)
+                                    .map(util.snakeCaseToCapitalizedWords),
                         datasets: [
                             {
                                 label: "Tasting Scores",
@@ -24,7 +26,8 @@
                                 pointBackgroundColor: "#01D1B2",
                                 pointHoverBackgroundColor: "#fff",
                                 pointHoverBorderColor: "#01D1B2",
-                                data: Object.keys(this.dataset).map(key => this.dataset[key])
+                                data: Object.keys(this.dataset)
+                                          .map(key => this.dataset[key])
                             }
                         ]
                     },
@@ -43,7 +46,8 @@
         watch: {
             dataset: {
                 handler: function(value, oldValue) {
-                    let data = Object.keys(this.dataset).map(key => this.dataset[key]);
+                    let data = Object.keys(this.dataset)
+                                   .map(key => this.dataset[key]);
                     this.chart.data.datasets[0].data = data;
                     this.chart.update();
                 },

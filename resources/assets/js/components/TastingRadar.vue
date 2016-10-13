@@ -5,12 +5,15 @@
         <div class="columns is-multiline">
             <div class="column is-one-fifth"
                 v-for="(metric, key) in metrics">
-                <label class="label">{{ key }}</label>
+                <label class="label">
+                    {{ snakeCaseToCapitalizedWords(key) }}
+                </label>
                 <p class="control">
                     <input type="range" min="0" max="10" step="1"
                         class="is-medium"
+                        :name="key"
                         v-model.number="metrics[key]">
-                    <span class="title is-5">{{ metrics[key] }}</span>
+                        <span class="title is-5">{{ metrics[key] }}</span>
                 </p>
             </div>
         </div>
@@ -20,6 +23,7 @@
 
 <script>
     import RadarGraph from './RadarGraph.vue';
+    import util from '../util';
 
     export default {
         data() {
@@ -28,14 +32,7 @@
             };
         },
         components: { RadarGraph },
-        methods: {
-            clampNumber(e) {
-                debugger;
-                if (e.target.value && (e.target.value < 0 || e.target.value > 10)) {
-                    e.preventDefault();
-                }
-            }
-        }
+        methods: util
     };
 </script>
 

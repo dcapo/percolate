@@ -1,7 +1,7 @@
 @extends('form')
 
 @section('title')
-    @include('partials.title', ['title' => "Edit: $bean->name"])
+    @include('partials.title', ['title' => "Edit Bean"])
 @stop
 
 @section('form')

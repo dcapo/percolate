@@ -1,7 +1,7 @@
 <label for="tasted_at" class="label">Tasting Date</label>
 <p class="control">
     <pikaday name="tasted_at"
-        {{ isset($tasting) ? ':value="{$tasting->tasted_at}"' : '' }}>
+        {{ isset($tasting) ? ":value='{$tasting->tasted_at}'" : '' }}>
     </pikaday>
 </p>
 
