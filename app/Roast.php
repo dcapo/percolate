@@ -28,4 +28,8 @@ class Roast extends Model
     public function bean() {
         return $this->belongsTo('App\Bean');
     }
+
+    public function brews() {
+        return $this->hasMany('App\Brew');
+    }
 }

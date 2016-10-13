@@ -11,7 +11,7 @@ class BrewReadingsTableSeeder extends Seeder
     public function run() {
         $brews = DB::table('brews')->pluck('id');
         $brews->each(function($brewId) {
-            for ($time = 0; $time < 6000; $time += 100) {
+            for ($time = 0; $time <= 60; $time += 0.5) {
                 factory(\App\BrewReading::class, 1)->create([
                     'time' => $time
                 ]);

@@ -16,11 +16,11 @@ class CreateRoastsTable extends Migration
         Schema::create('roasts', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->timestamp('roasted_at');
+            $table->date('roasted_at');
             $table->integer('bean_id')->unsigned()->index();
-            $table->integer('drying_time');
-            $table->integer('maillard_time');
-            $table->integer('development_time');
+            $table->time('drying_time');
+            $table->time('maillard_time');
+            $table->time('development_time');
             $table->double('drop_temperature');
 
             $table->timestamps();

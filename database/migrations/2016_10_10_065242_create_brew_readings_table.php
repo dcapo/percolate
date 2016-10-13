@@ -17,7 +17,7 @@ class CreateBrewReadingsTable extends Migration
             $table->increments('id');
             $table->integer('brew_id')->unsigned()->index();
             $table->double('temperature');
-            $table->integer('time');
+            $table->double('time');
             $table->timestamps();
 
             $table->foreign('brew_id')

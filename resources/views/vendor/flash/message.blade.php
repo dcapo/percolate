@@ -12,7 +12,7 @@
                        'notification-important' : ''
                     }}">
             @if(session()->has('flash_notification.important'))
-                <button class="delete"></button>
+                <button class="delete" onclick="this.parentElement.style.display = 'none'"></button>
             @endif
 
             {!! session('flash_notification.message') !!}

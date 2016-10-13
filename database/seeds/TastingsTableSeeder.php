@@ -17,7 +17,8 @@ class TastingsTableSeeder extends Seeder
 
         $brews->each(function($brewId) use ($taster) {
             factory(\App\Tasting::class, 1)->create([
-                'user_id' => $taster
+                'user_id' => $taster,
+                'brew_id' => $brewId
             ]);
         });
     }

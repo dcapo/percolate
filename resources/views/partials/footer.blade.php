@@ -1,6 +1,5 @@
 <footer class="footer">
     <div class="container">
-        <hr>
         <div class="content has-text-centered">
             <p>
                 <strong>ispresso</strong> is an exercise in over-engineering by <a href="https://github.com/sjmalski/">Sam Malanowski</a> &

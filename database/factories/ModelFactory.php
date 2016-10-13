@@ -32,11 +32,11 @@ $factory->define(App\Bean::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Roast::class, function (Faker\Generator $faker) {
     return [
-        'roasted_at' => $faker->dateTimeThisMonth(),
+        'roasted_at' => $faker->date(),
         'bean_id' => 1,
-        'drying_time' => $faker->numberBetween(1000, 100000),
-        'maillard_time' => $faker->numberBetween(1000, 100000),
-        'development_time' => $faker->numberBetween(1000, 100000),
+        'drying_time' => $faker->time('H:i:s', '00:03:00'),
+        'maillard_time' => $faker->time('H:i:s', '00:03:00'),
+        'development_time' => $faker->time('H:i:s', '00:03:00'),
         'drop_temperature' => $faker->randomFloat(1, 200, 500)
     ];
 });
@@ -49,7 +49,7 @@ $factory->define(App\BrewStyle::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Brew::class, function (Faker\Generator $faker) {
     return [
-        'brewed_at' => $faker->dateTimeThisMonth(),
+        'brewed_at' => $faker->date(),
         'roast_id' => 1,
         'brew_style_id'=> 1
     ];
@@ -59,14 +59,15 @@ $factory->define(App\BrewReading::class, function (Faker\Generator $faker) {
     return [
         'brew_id' => 1,
         'temperature' => $faker->randomFloat(1, 200, 500),
-        'time' => $faker->numberBetween(1000, 100000)
+        'time' => $faker->randomFloat(1, 0, 180)
     ];
 });
 
 $factory->define(App\Tasting::class, function (Faker\Generator $faker) {
     return [
-        'tasted_at' => $faker->dateTimeThisMonth(),
+        'tasted_at' => $faker->date(),
         'user_id' => 1,
+        'brew_id' => 1,
         'overall_score' => $faker->numberBetween(1, 10),
         'dry_fragrance' => $faker->numberBetween(1, 10),
         'wet_aroma' => $faker->numberBetween(1, 10),

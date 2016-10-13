@@ -15,8 +15,9 @@ class CreateTastingsTable extends Migration
     {
         Schema::create('tastings', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamp('tasted_at');
+            $table->date('tasted_at');
             $table->integer('user_id')->unsigned()->index();
+            $table->integer('brew_id')->unsigned()->index();
             $table->integer('overall_score');
             $table->integer('dry_fragrance');
             $table->integer('wet_aroma');
@@ -33,6 +34,11 @@ class CreateTastingsTable extends Migration
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users')
+                  ->onDelete('cascade');
+
+            $table->foreign('brew_id')
+                  ->references('id')
+                  ->on('brews')
                   ->onDelete('cascade');
         });
     }

@@ -21,7 +21,7 @@ class BeansController extends Controller
     public function store(BeanRequest $request) {
         $bean = Bean::create($request->all());
 
-        flash("New bean '$bean->name' has been created.");
+        flash("New bean '$bean->name' has been created.")->important();
         return redirect(route('beans.index'));
     }
 
@@ -32,7 +32,7 @@ class BeansController extends Controller
     public function update(Bean $bean, BeanRequest $request) {
         $bean->update($request->all());
 
-        flash("Bean '$bean->name' has been updated.");
+        flash("Bean '$bean->name' has been updated.")->important();
         return redirect(route('beans.index'));
     }
 
@@ -40,7 +40,7 @@ class BeansController extends Controller
 		$name = $bean->name;
 		$bean->delete();
 
-		flash("Bean '{$bean->name}' has been deleted.");
+		flash("Bean '{$bean->name}' has been deleted.")->important();
 		return redirect(route('beans.index'));
     }
 }
