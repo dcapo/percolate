@@ -16,6 +16,10 @@ class TastingRequest extends FormRequest
         return true;
     }
 
+    public function flavorRules()
+    {
+
+    }
     /**
      * Get the validation rules that apply to the request.
      *
@@ -23,7 +27,7 @@ class TastingRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'tasted_at'     => ['required', 'date', 'before:tomorrow'],
             'user_id'       => ['required', 'integer', 'exists:users,id'],
             'brew_id'       => ['required', 'integer', 'exists:brews,id'],
@@ -37,7 +41,25 @@ class TastingRequest extends FormRequest
             'sweetness'     => ['required', 'integer', 'min:0', 'max:10'],
             'clean_cup'     => ['required', 'integer', 'min:0', 'max:10'],
             'complexity'    => ['required', 'integer', 'min:0', 'max:10'],
-            'uniformity'    => ['required', 'integer', 'min:0', 'max:10']
+            'uniformity'    => ['required', 'integer', 'min:0', 'max:10'],
+            'flavors'       => ['sometimes', 'array']
         ];
+        return array_merge($rules,
+            this->flavorRules()
+        );
     }
+
+	public function flavorRules()
+	{
+		$rules = [];
+
+		$flavors = $this->input('flavors') ?: [];
+		foreach($flavors as $index => $flavor) {
+			$rules["flavors.$index.name"] = ['required', 'string', 'max:255'];
+		}
+
+
+		return $rules;
+	}
+
 }

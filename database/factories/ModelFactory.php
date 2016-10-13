@@ -82,7 +82,7 @@ $factory->define(App\Tasting::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\TastingNote::class, function (Faker\Generator $faker) {
+$factory->define(App\Flavor::class, function (Faker\Generator $faker) {
     return [
         'tasting_id' => 1,
         'name' => $faker->word

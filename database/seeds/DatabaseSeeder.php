@@ -8,7 +8,7 @@ use Database\Seeds\BrewStylesTableSeeder;
 use Database\Seeds\BrewsTableSeeder;
 use Database\Seeds\BrewReadingsTableSeeder;
 use Database\Seeds\TastingsTableSeeder;
-use Database\Seeds\TastingNotesTableSeeder;
+use Database\Seeds\FlavorsTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,6 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BrewsTableSeeder::class);
         $this->call(BrewReadingsTableSeeder::class);
         $this->call(TastingsTableSeeder::class);
-        $this->call(TastingNotesTableSeeder::class);
+        $this->call(FlavorsTableSeeder::class);
 	}
 }

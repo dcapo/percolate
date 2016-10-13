@@ -44,6 +44,8 @@
 
 <tasting-radar></tasting-radar>
 
+<flavors-input></flavors-input>
+
 <p class="control">
     {!!
         Form::submit('Save',

@@ -1,7 +1,7 @@
 <template>
     <div class="tasting-radar">
-        <h1 class="title is-4">Tasting Spider Plot</h1>
-        <hr>
+        <h4 class="title is-4">Tasting Spider Plot</h4>
+        <hr />
         <div class="columns is-multiline">
             <div class="column is-one-fifth"
                 v-for="(metric, key) in metrics">
@@ -28,7 +28,7 @@
     export default {
         data() {
             return {
-                metrics: radarMetrics
+                metrics: ispresso.radarMetrics
             };
         },
         components: { RadarGraph },

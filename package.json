@@ -19,6 +19,9 @@
   },
   "dependencies": {
     "chart.js": "^2.3.0",
-    "pikaday": "^1.4.0"
+    "d3": "^3.5.17",
+    "jquery": "^3.1.1",
+    "pikaday": "^1.4.0",
+    "select2": "^4.0.3"
   }
 }

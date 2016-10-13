@@ -45,4 +45,8 @@ class Tasting extends Model
     public function brew() {
         return $this->belongsTo('App\Brew');
     }
+
+    public function flavors() {
+        return $this->hasMany('App\Flavor');
+    }
 }

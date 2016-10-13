@@ -16,7 +16,7 @@ class CreateBrewsTable extends Migration
         Schema::create('brews', function (Blueprint $table) {
             $table->increments('id');
             $table->date('brewed_at');
-            $table->integer('roast_id')->unsigned()->index();
+            $table->integer('roast_id')->unsigned()->index()->nullable();
             $table->integer('brew_style_id')->unsigned()->index();
             $table->timestamps();
 
