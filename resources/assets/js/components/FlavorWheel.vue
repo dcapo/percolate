@@ -6,14 +6,46 @@
 <script>
     import d3 from 'd3';
 
+    d3.selection.prototype.moveToFront = function() {
+        return this.each(function(){
+            this.parentNode.appendChild(this);
+        });
+    };
+    d3.selection.prototype.moveToBack = function() {
+        return this.each(function() {
+            var firstChild = this.parentNode.firstChild;
+            if (firstChild) {
+                this.parentNode.insertBefore(this, firstChild);
+            }
+        });
+    };
+
     export default {
-        props: ['flavors'],
+        props: ['flavors', 'selections'],
         methods: {
             brightness(rgb) {
                 return rgb.r * .299 + rgb.g * .587 + rgb.b * .114;
             },
-            onSelectFlavor(d) {
-                this.$emit('select-flavor', d.name);
+            reload() {
+                let vm = this;
+                d3.selectAll("path").each(function(d) {
+                    let elem = d3.select(this);
+                    let isSelected = vm.selections.includes(d.name);
+                    isSelected ? elem.moveToFront() : elem.moveToBack();
+                    elem.classed("selected", isSelected);
+                });
+                d3.selectAll("text").moveToFront();
+            },
+            toggleFlavor(datum) {
+                this.$emit('toggle-flavor', datum.name);
+            }
+        },
+        watch: {
+            selections: {
+                handler: function(value, oldValue) {
+                    this.reload();
+                },
+                deep: true
             }
         },
         mounted() {
@@ -26,8 +58,6 @@
                 duration = 1000;
 
             var div = d3.select("#vis");
-
-            div.select("img").remove();
 
             var vis = div.append("svg")
                 .attr("width", width + padding * 2)
@@ -57,7 +87,7 @@
                 .attr("d", arc)
                 .attr("fill-rule", "evenodd")
                 .style("fill", d => d.color)
-                .on("click", this.onSelectFlavor);
+                .on("click", this.toggleFlavor);
 
             var text = vis.selectAll("text").data(nodes);
             var textEnter = text.enter().append("text")
@@ -75,7 +105,7 @@
                         ")translate(" + (y(d.y) + padding) +
                         ")rotate(" + (angle > 90 ? -180 : 0) + ")";
                 })
-                .on("click", this.onSelectFlavor);
+                .on("click", this.toggleFlavor);
 
             textEnter.append("tspan")
                 .attr("x", 0)
@@ -86,6 +116,7 @@
                         return d.name;
                     }
                 });
+            this.reload();
         }
     };
 </script>
@@ -107,5 +138,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    path.selected {
+        stroke: black;
+        stroke-width: 2;
     }
 </style>

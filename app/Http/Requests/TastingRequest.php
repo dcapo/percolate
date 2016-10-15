@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Request;
 
-class TastingRequest extends FormRequest
+class TastingRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,10 +16,6 @@ class TastingRequest extends FormRequest
         return true;
     }
 
-    public function flavorRules()
-    {
-
-    }
     /**
      * Get the validation rules that apply to the request.
      *
@@ -44,9 +40,7 @@ class TastingRequest extends FormRequest
             'uniformity'    => ['required', 'integer', 'min:0', 'max:10'],
             'flavors'       => ['sometimes', 'array']
         ];
-        return array_merge($rules,
-            this->flavorRules()
-        );
+        return array_merge($rules, $this->flavorRules());
     }
 
 	public function flavorRules()
@@ -55,11 +49,10 @@ class TastingRequest extends FormRequest
 
 		$flavors = $this->input('flavors') ?: [];
 		foreach($flavors as $index => $flavor) {
-			$rules["flavors.$index.name"] = ['required', 'string', 'max:255'];
+			$rules["flavors.$index"] = ['required', 'string', 'max:255'];
 		}
 
 
 		return $rules;
 	}
-
 }

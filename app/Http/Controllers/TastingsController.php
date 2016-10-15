@@ -38,7 +38,7 @@ class TastingsController extends Controller
 
     public function store(TastingRequest $request) {
         try {
-            DB:::beginTransaction();
+            DB::beginTransaction();
 
             $tasting = Tasting::create($request->all());
             $tasting->flavors()->saveMany($this->createFlavors($request));
@@ -59,13 +59,12 @@ class TastingsController extends Controller
         $brews = Brew::with('roast.bean', 'style')->get();
         $users = DB::table('users')->pluck('name', 'id');
 
-
         $flavorWheel = file_get_contents(__DIR__ .
             './../../../public/json/flavor_wheel.json');
 
         JavaScript::put([
             'radarMetrics' => $tasting->getRadarMetrics(),
-            'flavors' => $tasting->flavors,
+            'flavors' => $tasting->flavors->pluck('name')->all(),
             'flavorWheel' => json_decode($flavorWheel)
         ]);
 
@@ -73,7 +72,17 @@ class TastingsController extends Controller
     }
 
     public function update(Tasting $tasting, TastingRequest $request) {
-        $tasting->update($request->all());
+        try {
+            DB::beginTransaction();
+
+            $tasting->flavors()->delete();
+            $tasting->flavors()->saveMany($this->createFlavors($request));
+            $tasting->update($request->all());
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+        }
 
         flash("Tasting for {$tasting->user->name} on {$tasting->tasted_at}
                has been updated.");
@@ -89,8 +98,9 @@ class TastingsController extends Controller
 
     public function createFlavors(TastingRequest $request) {
 		$flavors = [];
-		foreach($request->input('flavors') as $index => $flavorInput) {
-			$flavors[] = new Flavor($flavorInput);
+		foreach($request->input('flavors') as $index => $name) {
+            $flavors[] = new Flavor(compact('name'));
+
 		}
 		return $flavors;
     }

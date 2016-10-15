@@ -2,17 +2,14 @@
     <div class="flavors-input">
         <h4 class="title is-4">Flavors</h4>
         <hr />
-        <flavor-wheel @select-flavor="selectFlavor"
-            :flavors="flavorWheel">
+        <flavor-wheel @toggle-flavor="toggleFlavor"
+            :flavors="flavorWheel" :selections="flavors">
         </flavor-wheel>
         <div class="flavors-select-wrap">
             <select class="flavors-select"
-                name="flavors"
+                name="flavors[]"
                 multiple="multiple"
-                style="width: 100%"
-                v-model="flavors">
-                <option v-for="flavor in flattenedFlavors"
-                    :value="flavor">{{ flavor }}</option>
+                style="width: 100%">
             </select>
         </div>
     </div>
@@ -22,6 +19,7 @@
     import FlavorWheel from './FlavorWheel.vue';
     import $ from 'jquery';
     import select2 from 'select2';
+    import _ from 'lodash';
 
     export default {
         components: { FlavorWheel },
@@ -32,26 +30,26 @@
             };
         },
         computed: {
-            flattenedFlavors() {
-                const recursivelyFlatten = (flavor, flavors) => {
-                    if (flavor.name && !flavors.includes(flavor.name)) {
-                        flavors.push(flavor.name);
+            flavorOptions() {
+                const recursivelyFlatten = (flavor, options) => {
+                    if (flavor.name && !options.includes(flavor.name)) {
+                        options.push(flavor.name);
                     }
 
                     if (flavor.children && flavor.children.length) {
                         flavor.children.forEach(flavor => {
-                            recursivelyFlatten(flavor, flavors);
+                            recursivelyFlatten(flavor, options);
                         });
                     }
                 };
 
-                let flavors = [];
-                recursivelyFlatten(this.flavorWheel, flavors);
-                return flavors;
+                let options = [];
+                recursivelyFlatten(this.flavorWheel, options);
+                return _.union(options, this.flavors);
             }
         },
         methods: {
-            selectFlavor(name) {
+            toggleFlavor(name) {
                 let index = this.flavors.indexOf(name);
                 if (index >= 0) {
                     this.flavors.splice(index, 1);
@@ -62,14 +60,33 @@
             }
         },
         mounted() {
-            let $select = $(this.$el).find('.flavors-select');
-            this.$select = $select.select2({
+            let vm = this;
+            this.$select = $(this.$el).find('.flavors-select').select2({
                 placeholder: 'Enter a flavor here...',
-                tags: true
+                data: this.flavorOptions,
+                tags: true,
+                createTag(params) {
+                    let flavor = _.startCase(params.term.trim());
+                    if (!vm.flavorOptions.includes(flavor)) {
+                        return {
+                            id: flavor,
+                            text: flavor,
+                            isNew: true
+                        };
+                    }
+                },
+                insertTag(data, tag) {
+                    data.push(tag);
+                }
+            });
+            this.$select.val(this.flavors).trigger('change');
+
+            this.$select.on("select2:select", (e) => {
+                this.flavors.push(e.params.data.text);
             });
 
-            $select.on("select2:select", (e) => {
-                this.flavors.push(e.params.data.text);
+            this.$select.on("select2:unselect", (e) => {
+                this.flavors.splice(this.flavors.indexOf(e.params.data.text), 1);
             });
         }
     };

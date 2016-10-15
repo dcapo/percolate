@@ -6,15 +6,9 @@
             "color": "#D81869",
             "children": [
                 { "name": "Black Tea", "color": "#965F6D"},
-                {
-                    "name": "Floral",
-                    "color": "#DE739C",
-                    "children": [
-                        { "name": "Chamomile", "color": "#F79D31" },
-                        { "name": "Rose", "color": "#ED5C7A" },
-                        { "name": "Jasmine", "color": "#F7F0BF" }
-                    ]
-                }
+                { "name": "Chamomile", "color": "#F79D31" },
+                { "name": "Rose", "color": "#ED5C7A" },
+                { "name": "Jasmine", "color": "#F7F0BF" }
             ]
         },
         {
@@ -66,11 +60,11 @@
             ]
         },
         {
-            "name": "Sour / Fermented",
+            "name": "Sour",
             "color": "#EAB32D",
             "children": [
                 {
-                    "name": "Sour",
+                    "name": "Acidic",
                     "color": "#E0C231",
                     "children": [
                         { "name": "Sour Aromatics", "color": "#9EA62A" },
@@ -82,7 +76,7 @@
                     ]
                 },
                 {
-                    "name": "Alcohol / Fermented",
+                    "name": "Alcoholic",
                     "color": "#AF963C",
                     "children": [
                         { "name": "Winey", "color": "#8D1F53" },
@@ -94,20 +88,19 @@
             ]
         },
         {
-            "name": "Green / Vegetative",
+            "name": "Green",
             "color": "#1F7933",
             "children": [
                 { "name": "Olive Oil", "color": "#A2AF36" },
                 { "name": "Raw", "color": "#718839" },
                 {
-                    "name": "Green / Vegetative",
+                    "name": "Vegetative",
                     "color": "#3FA158",
                     "children": [
                         { "name": "Underripe", "color": "#A2BA3A" },
                         { "name": "Peapod", "color": "#64A943" },
                         { "name": "Fresh", "color": "#19A556" },
                         { "name": "Dark Green", "color": "#13844B" },
-                        { "name": "Vegetative", "color": "#30B151" },
                         { "name": "Hay-like", "color": "#A3A73A" },
                         { "name": "Herb-like", "color": "#7CBF4A" }
                     ]
