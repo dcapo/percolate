@@ -24,10 +24,10 @@ class RoastRequest extends FormRequest
     public function rules()
     {
         return [
-            'roasted_at' => ['required', 'date', 'before:tomorrow'],
-            'bean_id' => ['required', 'integer', 'exists:beans,id'],
-            'drying_time' => ['required', 'date_format:H:i:s'],
-            'maillard_time' => ['required', 'date_format:H:i:s'],
+            'roasted_at'       => ['required', 'date', 'before:tomorrow'],
+            'bean_id'          => ['required', 'integer', 'exists:beans,id'],
+            'drying_time'      => ['required', 'date_format:H:i:s'],
+            'maillard_time'    => ['required', 'date_format:H:i:s'],
             'development_time' => ['required', 'date_format:H:i:s'],
             'drop_temperature' => ['required', 'numeric', 'min:0']
         ];

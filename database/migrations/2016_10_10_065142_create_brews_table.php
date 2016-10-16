@@ -15,9 +15,14 @@ class CreateBrewsTable extends Migration
     {
         Schema::create('brews', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('brewed_at');
+            $table->timestamp('brewed_at');
             $table->integer('roast_id')->unsigned()->index()->nullable();
             $table->integer('brew_style_id')->unsigned()->index();
+            $table->double('average_temperature');
+            $table->double('temperature_delta');
+            $table->integer('fine')->nullable();
+            $table->char('finer', 1)->nullable();
+            $table->text('extra_fields')->nullable();
             $table->timestamps();
 
             $table->foreign('roast_id')

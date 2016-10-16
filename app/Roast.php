@@ -16,8 +16,13 @@ class Roast extends Model
     ];
 
     protected $appends = [
-        'drop_time'
+        'drop_time',
+        'name'
     ];
+
+    public function getNameAttribute() {
+        return "{$this->roasted_at} - {$this->bean->name}";
+    }
 
     public function getDropTimeAttribute() {
         return $this->drying_time +

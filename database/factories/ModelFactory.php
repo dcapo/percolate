@@ -51,7 +51,11 @@ $factory->define(App\Brew::class, function (Faker\Generator $faker) {
     return [
         'brewed_at' => $faker->date(),
         'roast_id' => 1,
-        'brew_style_id'=> 1
+        'brew_style_id'=> 1,
+        'average_temperature' => $faker->randomFloat(1, 200, 500),
+        'temperature_delta' => $faker->randomFloat(1, 10, 50),
+        'fine' => $faker->numberBetween(1, 10),
+        'finer' => $faker->regexify('[A-W]')
     ];
 });
 
@@ -59,7 +63,8 @@ $factory->define(App\BrewReading::class, function (Faker\Generator $faker) {
     return [
         'brew_id' => 1,
         'temperature' => $faker->randomFloat(1, 200, 500),
-        'time' => $faker->randomFloat(1, 0, 180)
+        'time' => $faker->randomFloat(1, 0, 180),
+        'pressure' => 0
     ];
 });
 

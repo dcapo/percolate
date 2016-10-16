@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
             }
 
             return false;
-        }, 'The {field} field must be a valid time.');
+        }, 'The {field} field must be a valid datetime.');
 
         Validator::replacer('date_formats',
                             function($message, $attribute, $rule, $parameters) {

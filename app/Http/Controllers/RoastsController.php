@@ -22,7 +22,7 @@ class RoastsController extends Controller
     public function store(RoastRequest $request) {
         $roast = Roast::create($request->all());
 
-        flash("Roast on {$roast->roasted_at} has been created.")->important();
+        flash("Roast creation successful!")->important();
         return redirect(route('roasts.index'));
     }
 
@@ -34,15 +34,14 @@ class RoastsController extends Controller
     public function update(Roast $roast, RoastRequest $request) {
         $roast->update($request->all());
 
-        flash("Roast on {$roast->roasted_at} has been updated.")->important();
+        flash("Roast update successful!")->important();
         return redirect(route('roasts.index'));
     }
 
     public function destroy(Roast $roast) {
-		$roastedAt = $roast->roasted_at;
 		$roast->delete();
 
-		flash("The roast on '{$roastedAt}' has been deleted.")->important();
+		flash("Roast deletion successful!")->important();
 		return redirect(route('roasts.index'));
     }
 }
