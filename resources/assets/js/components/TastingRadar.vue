@@ -28,7 +28,7 @@
     export default {
         data() {
             return {
-                metrics: ispresso.radarMetrics
+                metrics: percolate.radarMetrics
             };
         },
         components: { RadarGraph },

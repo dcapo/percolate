@@ -25,8 +25,8 @@
         components: { FlavorWheel },
         data() {
             return {
-                flavors: ispresso.flavors,
-                flavorWheel: ispresso.flavorWheel
+                flavors: percolate.flavors,
+                flavorWheel: percolate.flavorWheel
             };
         },
         computed: {
