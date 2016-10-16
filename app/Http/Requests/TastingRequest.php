@@ -27,7 +27,6 @@ class TastingRequest extends Request
             'tasted_at'     => ['required', 'date', 'before:tomorrow'],
             'user_id'       => ['required', 'integer', 'exists:users,id'],
             'brew_id'       => ['required', 'integer', 'exists:brews,id'],
-            'overall_score' => ['required', 'integer', 'min:0', 'max:10'],
             'dry_fragrance' => ['required', 'integer', 'min:0', 'max:10'],
             'wet_aroma'     => ['required', 'integer', 'min:0', 'max:10'],
             'brightness'    => ['required', 'integer', 'min:0', 'max:10'],

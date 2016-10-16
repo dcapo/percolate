@@ -37,11 +37,6 @@
     </span>
 </p>
 
-<label for="overall_score" class="label">Overall Score</label>
-<p class="control">
-    {!! Form::text('overall_score', null, ['class' => 'input is-medium']) !!}
-</p>
-
 <tasting-radar></tasting-radar>
 
 <flavors-input></flavors-input>

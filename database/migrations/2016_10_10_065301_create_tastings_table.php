@@ -18,7 +18,6 @@ class CreateTastingsTable extends Migration
             $table->date('tasted_at');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('brew_id')->unsigned()->index();
-            $table->integer('overall_score');
             $table->integer('dry_fragrance');
             $table->integer('wet_aroma');
             $table->integer('brightness');

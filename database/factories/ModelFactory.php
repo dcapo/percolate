@@ -73,7 +73,6 @@ $factory->define(App\Tasting::class, function (Faker\Generator $faker) {
         'tasted_at' => $faker->date(),
         'user_id' => 1,
         'brew_id' => 1,
-        'overall_score' => $faker->numberBetween(1, 10),
         'dry_fragrance' => $faker->numberBetween(1, 10),
         'wet_aroma' => $faker->numberBetween(1, 10),
         'brightness' => $faker->numberBetween(1, 10),

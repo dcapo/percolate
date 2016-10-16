@@ -21,7 +21,7 @@ class TastingsController extends Controller
     }
 
     public function create() {
-        $brews = Brew::with('roast.bean', 'style')->get();
+        $brews = Brew::with('roast.bean', 'style')->orderBy('brewed_at', 'desc')->get();
         $users = DB::table('users')->pluck('name', 'id');
 
         $flavorWheel = file_get_contents(__DIR__ .

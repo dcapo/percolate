@@ -10,7 +10,6 @@ class Tasting extends Model
         'tasted_at',
         'user_id',
         'brew_id',
-        'overall_score',
         'dry_fragrance',
         'wet_aroma',
         'brightness',
@@ -22,6 +21,15 @@ class Tasting extends Model
         'complexity',
         'uniformity'
     ];
+
+    protected $appends = [
+        'overall_score'
+    ];
+
+    public function getOverallScoreAttribute() {
+        $metrics = array_values($this->getRadarMetrics());
+        return array_sum($metrics);
+    }
 
     public function getRadarMetrics() {
         return [

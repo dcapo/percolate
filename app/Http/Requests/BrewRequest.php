@@ -63,7 +63,9 @@ class BrewRequest extends ApiRequest
 
     public function sanitize() {
         $input = $this->all();
-        $input['finer'] = strtoupper($input['finer']);
+        if (isset($input['finer'])) {
+            $input['finer'] = strtoupper($input['finer']);
+        }
 
         $this->replace($input);
 
